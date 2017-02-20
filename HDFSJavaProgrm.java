@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 
 public class HDFSJavaProgrm {
 
-    public static List<String> getAllFilePath(Path filePath, FileSystem fs) throws FileNotFoundException, IOException
+    public static List<String> getPath(Path filePath, FileSystem fs) throws FileNotFoundException, IOException
     {
         List<String> fileList = new ArrayList<String>();
        
@@ -20,7 +20,7 @@ public class HDFSJavaProgrm {
        
         for (FileStatus fileStat : fileStatus) {
             if (fileStat.isDirectory()) {
-                fileList.addAll(getAllFilePath(fileStat.getPath(), fs));
+                fileList.addAll(getPath(fileStat.getPath(), fs));
             } else {
                 fileList.add(fileStat.getPath().toString());
             }
@@ -34,7 +34,7 @@ public class HDFSJavaProgrm {
        
         for(int j=0; j<args.length;j++)
         {
-            List<String> Listing = getAllFilePath(new Path(args[j]),FileSystem.get(conf));
+            List<String> Listing = getPath(new Path(args[j]),FileSystem.get(conf));
             for (int i=0;i < Listing.size();i++)
             {
               System.out.println(Listing.get(i));   
