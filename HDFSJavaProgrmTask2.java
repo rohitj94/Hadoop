@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.FileNotFoundException;
 
-public class HDFSJavaProgrmTask3 {
+public class HDFSJavaProgrmTask2 {
 
     public static List<String> getPath(Path filePath, FileSystem fs) throws FileNotFoundException, IOException
     {
@@ -32,13 +32,11 @@ public class HDFSJavaProgrmTask3 {
     {
         Configuration conf = new Configuration();
        
-        for(int j=0; j<args.length;j++)
+        List<String> Listing = getPath(new Path("hdfs://localhost:9000/"),FileSystem.get(conf));
+          
+        for (int i=0;i < Listing.size();i++)
         {
-            List<String> Listing = getPath(new Path(args[j]),FileSystem.get(conf));
-            for (int i=0;i < Listing.size();i++)
-            {
               System.out.println(Listing.get(i));   
-            }
         }
     }
 }
